@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block Title %}
+  {{ user.name }} Profile
+{% endblock %}
+
+{% block content %}
+<style>
+  /* Fonts */
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+  /* Container Styles */
+  .profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: grey;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(10, 9, 0, 100.1);
+    font-family: 'Roboto', sans-serif;
+    border: 5px solid black;
+  }
+
+  /* Heading Styles */
+  .profile-heading {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: black;
+    text-align: 10px;
+    text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  /* Image Styles */
+  .profile-image {
+    width: 300px; /* Adjust the size as needed */
+    height: 300px; /* Adjust the size as needed */
+    border-radius: 10px; /* Keep the border-radius if you want rounded corners */
+    object-fit: cover; /* Ensures the image fills the square container */
+    margin-bottom: 20px;
+    border: 5px solid black;
+    margin-left: 250px;
+}
+
+
+  /* Details Styles */
+  .profile-details p {
+    margin-top: 10px; /* Adjust the value to increase or decrease the space */
+    margin-bottom: 10px;
+    color: black;
+    font-size: 30px;
+}
+
+  /* Table Styles */
+  .profile-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    
+  }
+
+  .profile-table th,
+  .profile-table td {
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 30px;
+    text-align: center;
+    color: black
+    
+    
+  }
+
+  .profile-table th {
+    background-color: #f0f0f0;
+  }
+
+  /* Button Styles */
+  .back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+
+  .back-button:hover {
+    background-color: #45a049;
+  }
+</style>
+
+<div class="profile-container">
+  <h1 class="profile-heading">{{ user.name }}</h1>
+  <img class="profile-image" src="{{ user.photo.url }}" alt="{{ user.name }} photo">
+  <div class="profile-details">
+    <p><strong>Name of School:</strong> {{ user.school }}</p>
+    <p><strong>Course:</strong> {{ user.course }}</p>
+    <p><strong>Why do you like this Course?</strong></p>
+    <p>{{ user.bio }}</p>
+  </div>
+
+  <!-- Table container -->
+  <div class="profile-table-container">
+    <!-- Displaying likes and dislikes in a table -->
+    <table class="profile-table">
+      <tr>
+        <th width="50%">Likes</th>
+        <th width="50%">Dislikes</th>
+      </tr>
+      <tr>  
+        <td>{{ user.likes }}</td>
+        <td>{{ user.dislikes }}</td>
+      </tr>
+    </table>
+    <!-- End of table -->
+  </div>
+
+  <!-- Back button -->
+  <div class="button-container">
+    <a href="{% url 'user_list' %}" class="back-button">BACK</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Fill your Information</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            padding-top: 30px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative; /* Added position relative */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 19px; /* Adjust as needed */
+            position: absolute; /* Added position absolute */
+            left: calc(100% - 150px); /* Adjust as needed */
+            top: 690px; /* Adjusted top position */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>FILL YOUR INFORMATION</h1>
+    <form method="post" enctype="multipart/form-data" id="myForm" onsubmit="return validateForm()">
+        <input type="hidden" name="csrfmiddlewaretoken" value="Y2tljtP0pnFM5ePE4wJFF1tkiTZJx7QoGqY7QnQe8qqPUkNtbvUDBi7Dbo4td7lj">
+        <label for="id_name">Name:</label>
+        <input type="text" name="name" maxlength="100" required="" id="id_name">
+
+        <label for="id_school">School:</label>
+        <input type="text" name="school" maxlength="100" required="" id="id_school">
+
+        <label for="id_course">Course:</label>
+        <input type="text" name="course" maxlength="100" required="" id="id_course">
+
+        <label for="id_bio">Why do you like this Course?</label>
+        <textarea name="bio" cols="40" rows="10" id="id_bio"></textarea>
+
+        <label for="id_likes">Your Likes:</label>
+        <textarea name="likes" cols="40" rows="10" maxlength="500" required="" id="id_likes"></textarea>
+
+        <label for="id_dislikes">Your Dislikes:</label>
+        <textarea name="dislikes" cols="40" rows="10" maxlength="500" required="" id="id_dislikes"></textarea>
+
+        <label for="id_photo">Upload a Profile Picture:</label>
+        <input type="file" name="photo" accept="image/*" id="id_photo">
+        <div class="error-message" id="error-message"></div>
+
+        <button type="submit">SUBMIT</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            var fileInput = document.getElementById('id_photo');
+            var errorMessage = document.getElementById('error-message');
+            var file = fileInput.files[0];
+
+            if (!file) {
+                errorMessage.innerHTML = "Please upload a profile picture.";
+                return false;
+            }
+
+            // If all validations pass, return true to allow form submission
+            return true;
+        }
+    </script>
+</body>
+</html>
